@@ -9,13 +9,13 @@ vagrant up
 ```
 2. Post Installation Steps
 
-*Change directory owner
+* Change directory owner
 ```
 sudo chmod /etc/solr/data/
 sudo chmod /etc/solr/zoo_data/
 ```
 
-*Edit Solr/Tomcat configuration
+* Edit Solr/Tomcat configuration
 
 Change the following entry in file /etc/solr/collection1/conf/solrconfig.xml
 ```
@@ -30,7 +30,7 @@ Create the following file /etc/tomcat6/Catalina/localhost/solr.xml
 </Context>
 ```
 
-*Optional: Adding SolrCloud configuration
+* Optional: Adding SolrCloud configuration
 
 For main cloud server add the following line to the tomcat startup script
 ```
@@ -42,6 +42,6 @@ For additional cloud server add the following line to the tomcat startup script
 -DzkHost=<zk-host>:9983
 ```
 
-*Additional information
+* Additional information
 http://wiki.apache.org/solr/SolrCloud
 http://wiki.apache.org/solr/NewSolrCloudDesign
