@@ -51,12 +51,12 @@ class solr {
 	exec { "solr-download":
 		command => "wget http://mirror.serversupportforum.de/apache/lucene/solr/4.2.0/solr-4.2.0.tgz",
 		cwd => "/home/vagrant/",
-		creates => "/home/vagrant/apache-solr-4.2.0.tgz",
+		creates => "/home/vagrant/solr-4.2.0.tgz",
 		path => ["/usr/bin", "/usr/sbin/"]
 	}
 
 	exec { "solr-inflate":
-		command => "tar xzf apache-solr-4.2.0.tgz",
+		command => "tar xzf solr-4.2.0.tgz",
 		cwd => "/home/vagrant/",
 		creates => "/home/vagrant/solr-4.2.0/",
 		path => "/bin/",
