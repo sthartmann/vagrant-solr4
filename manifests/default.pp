@@ -49,38 +49,38 @@ class tomcat {
 class solr {
 
 	exec { "solr-download":
-		command => "wget http://apache.mirror.iphh.net/lucene/solr/4.0.0/apache-solr-4.0.0.tgz",
+		command => "wget http://mirror.serversupportforum.de/apache/lucene/solr/4.2.0/solr-4.2.0.tgz",
 		cwd => "/home/vagrant/",
-		creates => "/home/vagrant/apache-solr-4.0.0.tgz",
+		creates => "/home/vagrant/apache-solr-4.2.0.tgz",
 		path => ["/usr/bin", "/usr/sbin/"]
 	}
 
 	exec { "solr-inflate":
-		command => "tar xzf apache-solr-4.0.0.tgz",
+		command => "tar xzf apache-solr-4.2.0.tgz",
 		cwd => "/home/vagrant/",
-		creates => "/home/vagrant/apache-solr4/",
+		creates => "/home/vagrant/solr-4.2.0/",
 		path => "/bin/",
 		require => Exec["solr-download"]
 	}
 
-	exec { "solr-createdirectory":
-		command => "mkdir /etc/solr/",
+}
+
+# downloading zookeeper
+class zookeeper {
+
+	exec { "zk-download":
+		command => "wget http://mirror.serversupportforum.de/apache/zookeeper/zookeeper-3.4.5/zookeeper-3.4.5.tar.gz",
 		cwd => "/home/vagrant/",
-		path => ["/usr/bin", "/usr/sbin/", "/bin/"],
+		creates => "/home/vagrant/zookeeper-3.4.5.tar.gz",
+		path => ["/usr/bin", "/usr/sbin/"]
 	}
 
-	exec { "solr-createzoodirectory":
-		command => "mkdir /etc/solr/zoo_data/",
+	exec { "zk-inflate":
+		command => "tar xzf zookeeper-3.4.5.tar.gz",
 		cwd => "/home/vagrant/",
-		path => ["/usr/bin", "/usr/sbin/", "/bin/"],
-
-	}
-
-	exec { "solr-install":
-		command => "cp -R apache-solr-4.0.0/example/solr/* /etc/solr/ | cp -R apache-solr-4.0.0/example/webapps/solr.war /etc/solr/",
-		cwd => "/home/vagrant/",
-		path => ["/usr/bin", "/usr/sbin/", "/bin"],
-		require => Exec["solr-inflate"]
+		creates => "/home/vagrant/zookeeper-3.4.5/",
+		path => "/bin/",
+		require => Exec["zk-download"]
 	}
 
 }
