@@ -90,3 +90,4 @@ include system
 include apache
 include tomcat
 include solr
+include zookeeper
